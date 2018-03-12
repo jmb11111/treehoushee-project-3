@@ -6,6 +6,13 @@ let ccField = $("#cc-num");
 let zipField = $("#zip");
 let cvvField = $("#cvv");
 let registrationFlag = $("#register");
+let CVVError = $("#CVVError");
+let emailError = $("#emailError");
+let emailError2 = $("#emailError2");
+
+let ccError = $("#ccError");
+let zipError = $("#zipError");
+let nameError = $("#nameError");
 
 nameField.focus();
 
@@ -231,27 +238,31 @@ paymentSelection();
 function checkName(){
 let name = document.forms["myForm"]['user_name'].value;
   if (name == "") {
-    alert("Name must be filled out");
+    nameError.show();
     nameField.css('border',"2px red solid");
   }else {
+    nameError.hide();
     nameField.css('border',"2px solid #c1deeb");
   }
 }
 
 
 // Email field must be a validly formatted e-mail address (you don't have to check that it's a real e-mail address, just that it's formatted like one: dave@teamtreehouse.com for example.
+// *EXTRA CREDIT* This checks for two things, if the email is empty or if it is invalid and gives a message in real time depending on which is the case
 function checkEmail(){
   let email = document.forms["myForm"]['user_email'].value;
   let emailFilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
   if (email == "") {
-    alert('Email Address Field Cannot Be Blank');
+    emailError.show();
     emailField.css('border',"2px red solid");
    }else if (!emailFilter.test(email)) {
-          alert('Please enter a valid e-mail address.');
+          emailError2.show();
           emailField.css('border',"2px red solid");
           return false;
    }
    else {
+     emailError.hide();
+     emailError2.hide();
      emailField.css('border',"2px solid #c1deeb");
 }
 }
@@ -272,39 +283,45 @@ function checkChecker(){
 
 // If the selected payment option is "Credit Card," make sure the user has supplied a credit card number, a zip code, and a 3 number CVV value before the form can be submitted.
 // Credit card field should only accept a number between 13 and 16 digits
+ccError.css("display", "none");
 function creditCardChecker(){
+  let paymentChoice = document.getElementById('payment').selectedIndex;
   let cc = document.forms["myForm"]['user_cc-num'].value;
   let cardno = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
   if(cc.match(cardno)|| paymentChoice == 2 || paymentChoice ==3)
         {
+      ccError.hide();
       ccField.css('border',"2px solid #c1deeb");
       return true;
         }
       else
         {
-        // alert("Not a valid Visa credit card number!");
-         ccField.css('border',"2px red solid");
+        ccError.show();
+        ccField.css('border',"2px red solid");
         return false;
         }
 }
 
 
 // The zipcode field should accept a 5-digit number
+zipError.css("display", "none");
 function zipChecker(){
   let zip = document.forms["myForm"]['user_zip'].value;
   let zipCheck = /^(?:[0-9]{5})$/;
   if(zip.match(zipCheck))
         {
+      zipError.hide();
       zipField.css('border',"2px solid #c1deeb");
       return true;
         }
       else
         {
-        alert("Not a valid zip code!");
+        zipError.show();
          zipField.css('border',"2px red solid");
         return false;
         }
 }
+CVVError.hide();
 
 // The CVV should only accept a number that is exactly 3 digits long
 function cvvChecker(){
@@ -313,12 +330,13 @@ function cvvChecker(){
   if(cvv.match(cvvCheck))
         {
       cvvField.css('border',"2px solid #c1deeb");
+      CVVError.hide();
       return true;
         }
       else
         {
-        alert("Not a valid cvv code!");
-         cvvField.css('border',"2px red solid");
+        CVVError.show();
+        cvvField.css('border',"2px red solid");
         return false;
         }
 }
@@ -327,16 +345,29 @@ function cvvChecker(){
 // Provide some kind of indication when there’s a validation error. The field’s borders could turn red, for example, or a message could appear near the field or at the top of the form
 // There should be an error indication for the name field, email field, “Register for Activities” checkboxes, credit card number, zip code, and CVV
 //scroll the message box to the top offset of browser's scrool bar
-$(document).ready(function(){
-  $("#message_box").sticky({topSpacing:0});
-});
-//when the close button at right corner of the message box is clicked
-$('#close_message').click(function()
-{
-  //the messagebox gets scrool down with top property and gets hidden with zero opacity
-  $('#message_box').animate({opacity:0 }, 5000);
-});
 
+
+//These functions make each error message able to be hidden independantly
+function closeEmailMessage(){
+  $('#emailError').css('display', 'none');
+}
+function closeEmail2Message(){
+  $('#emailError2').css('display', 'none');
+}
+function closeNameMessage(){
+  $('#nameError').css('display', 'none');
+}
+function closeCCMessage(){
+  $('#ccError').css('display', 'none');
+}
+function closeCVVMessage(){
+  $('#CVVError').css('display', 'none');
+}
+function closeZipMessage(){
+  $('#zipError').css('display', 'none');
+}
+
+//runs all validation functions
 function formValidation() {
   checkName();
   checkEmail();

@@ -8,6 +8,30 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="message_box" id='emailError'>
+    <img id="close_message" onclick="closeEmailMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" />
+    Email address cannot be left blank.
+  </div>
+  <div class="message_box" id='emailError2'>
+    <img id="close_message" onclick="closeEmail2Message()" style="float:right;cursor:pointer" src="12-em-cross.png" />
+    Please enter a validly formated email.
+  </div>
+  <div class="message_box" id='nameError'>
+    <img id="close_message" onclick="closeNameMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" />
+    Please enter your full name.
+  </div>
+  <div class="message_box" id='ccError'>
+    <img id="close_message" onclick="closeCCMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" />
+    Please enter a valid credit card number.
+  </div>
+  <div class="message_box" id='zipError'>
+    <img id="close_message" onclick="closeZipMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" />
+    Please enter a valid zipcode.
+    </div>
+  <div class="message_box" id='CVVError'>
+    <img id="close_message" onclick="closeCVVMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" />
+    Please enter a valid CVV code.
+  </div>
   	<div class="container">
 
       <header>
@@ -21,10 +45,10 @@
           <legend>Basic Info</legend>
 
           <label for="name">Name:</label>
-          <input type="text" id="name" name="user_name" >
+          <input type="text" id="name" name="user_name" onchange="checkName()" >
 
           <label for="mail">Email:</label>
-          <input type="email" id="mail" name="user_email">
+          <input type="email" id="mail" name="user_email" onchange="checkEmail()">
 
           <label for="title">Job Role</label>
           <select onchange="hideOtherInput()"  id="title" name="user_title">
@@ -107,12 +131,12 @@
 
             <div class="col-3 col">
               <label for="zip">Zip Code:</label>
-              <input id="zip" name="user_zip" type="text">
+              <input id="zip" name="user_zip" type="text" onchange="zipChecker()">
             </div>
 
             <div class="col-3 col">
               <label for="cvv">CVV:</label>
-              <input id="cvv" name="user_cvv" type="text">
+              <input id="cvv" name="user_cvv" type="text" onchange="cvvChecker()">
             </div>
 <br>
             <label for="exp-month">Expiration Date:</label>
@@ -153,13 +177,10 @@
 
 
       </form>
-      <div id="message_box" class="sticky-wrapper">
-    <img id="close_message" style="float:right;cursor:pointer" src="12-em-cross.png" />
-    The floating message goes here
-</div>
+
 <button onclick="formValidation()">Submit</button>
   	</div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+  <script src="js/jquery-1.11.2.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
   <script src="js/main.js"></script>
 </body>

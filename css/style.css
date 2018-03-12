@@ -166,17 +166,39 @@ button:hover {
 }
 
 /* Validation */
-#message_box {
-position: fixed;
-top: 0; left: 0;
+.message_box {
+float: left;
+position: relative;
 z-index: 10;
 background:#ffc;
 padding:5px;
 border:1px solid #CCCCCC;
 text-align:center;
 font-weight:bold;
-width:30%;
+width:200px;
 }
+
+#emailError,
+#emailError2 {
+  float:none;
+  margin-left: 5.5em;
+  top: 28em;
+  display: none;
+}
+#nameError {
+  float:none;
+  margin-left: 5.5em;
+  top: 22em;
+  display: none;
+}
+#ccError,
+#zipError,
+#CVVError {
+  float:none;
+  margin-left: 5.5em;
+  top: 81em;
+}
+
 
 
 
@@ -192,7 +214,10 @@ width:30%;
 		width: 100%;
 	}
 }
-
+#emailError {
+  float:none;
+  margin-left: 5.5em;
+}
 @media (min-width: 680px) {
 	header {
 		padding: 4.65em 0 2.5em;
