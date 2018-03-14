@@ -78,7 +78,8 @@
 
           <div>
             <label for="design">Design:</label>
-            <select onclick="onClickColors()" id="design" name="user_design">
+            <select onchange="onClickColors()" id="design" name="user_design">
+              <option value="Select">Please Select a Theme</option>
               <option value="js puns">Theme - JS Puns</option>
               <option value="heart js">Theme - I &#9829; JS</option>
             </select>
@@ -177,8 +178,8 @@
 
 
       </form>
+<button onclick="formValidation()" id="submit">Submit</button>
 
-<button onclick="formValidation()">Submit</button>
   	</div>
   <script src="js/jquery-1.11.2.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
