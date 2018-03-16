@@ -378,11 +378,11 @@ function closeZipMessage(){
 //runs all validation functions
 function formValidation() {
   if(
-  checkName(),
-  checkEmail(),
-  checkChecker(),
-  creditCardChecker(),
-  zipChecker(),
+  checkName()&&
+  checkEmail()&&
+  checkChecker()&&
+  creditCardChecker()&&
+  zipChecker()&&
   cvvChecker()){
 return true;
 
@@ -390,16 +390,14 @@ return true;
 return false;
 }
 }
-
-function submit(){
-  if (formValidation()) {
-    var x = document.getElementById('submit');
-    x.submit(); //form submission
-  }else {
-    $(document).ready(function(){
-    $("#submit").click(function(event){
-        event.preventDefault();
-    });
-});
+const button  = document.getElementById("submit");
+button.addEventListener("click", function(e) {
+  if(!formValidation()) {
+    console.log(e);
+    e.preventDefault();
+    console.log("Name is wrong!");
+  } else {
+    console.log("Name is right!");
   }
-}
+
+});
