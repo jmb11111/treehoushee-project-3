@@ -8,30 +8,7 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="message_box" id='emailError'>
-    <img class="close_message" onclick="closeEmailMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" alt="red x for closing message box" />
-    Email address cannot be left blank.
-  </div>
-  <div class="message_box" id='emailError2'>
-    <img class="close_message" onclick="closeEmail2Message()" style="float:right;cursor:pointer" src="12-em-cross.png" alt="red x for closing message box"/>
-    Please enter a validly formated email.
-  </div>
-  <div class="message_box" id='nameError'>
-    <img class="close_message" onclick="closeNameMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" alt="red x for closing message box"/>
-    Please enter your full name.
-  </div>
-  <div class="message_box" id='ccError'>
-    <img class="close_message" onclick="closeCCMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" alt="red x for closing message box"/>
-    Please enter a valid credit card number.
-  </div>
-  <div class="message_box" id='zipError'>
-    <img class="close_message" onclick="closeZipMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" alt="red x for closing message box"/>
-    Please enter a valid zipcode.
-    </div>
-  <div class="message_box" id='CVVError'>
-    <img class="close_message" onclick="closeCVVMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" alt="red x for closing message box"/>
-    Please enter a valid CVV code.
-  </div>
+
   	<div class="container">
 
       <header>
@@ -39,16 +16,31 @@
         <h1>Full Stack Conf</h1>
       </header>
 
-      <form name='myForm'  method="post" onsubmit="formValidation()">
+      <form name='myForm'  onsubmit="submit()">
+
+
 
         <fieldset>
           <legend>Basic Info</legend>
 
           <label for="name">Name:</label>
           <input type="text" id="name" name="user_name" onchange="checkName()" >
+          <div class="message_box is-hidden" id='nameError'>
+            <img class="close_message"  onclick="closeNameMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" alt="red x for closing message box"/>
+            Please enter your full name.
+          </div>
 
           <label for="mail">Email:</label>
           <input type="email" id="mail" name="user_email" onchange="checkEmail()">
+          <div class="message_box is-hidden" id='emailError'>
+            <img class="close_message" onclick="closeEmailMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" alt="red x for closing message box" />
+            Email address cannot be left blank.
+          </div>
+          <div class="message_box is-hidden" id='emailError2'>
+            <img class="close_message" onclick="closeEmail2Message()" style="float:right;cursor:pointer" src="12-em-cross.png" alt="red x for closing message box"/>
+            Please enter a validly formated email.
+          </div>
+
 
           <label for="title">Job Role</label>
           <select onchange="hideOtherInput()"  id="title" name="user_title">
@@ -123,21 +115,37 @@
 
           <div id="credit-card" class="credit-card">
 
+
+
             <div class="col-6 col">
               <label for="cc-num">Card Number:</label>
 
           	  <input id="cc-num" name="user_cc-num" type="text" onchange="creditCardChecker()">
+              <div class="message_box" id='ccError'>
+                <img class="close_message" onclick="closeCCMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" alt="red x for closing message box"/>
+                Please enter a valid credit card number.
+              </div>
+              <div class="message_box" id='zipError'>
+                <img class="close_message" onclick="closeZipMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" alt="red x for closing message box"/>
+                Please enter a valid zipcode.
+                </div>
+                <div class="message_box" id='CVVError'>
+                  <img class="close_message" onclick="closeCVVMessage()" style="float:right;cursor:pointer" src="12-em-cross.png" alt="red x for closing message box"/>
+                  Please enter a valid CVV code.
+                </div>
 
             </div>
 
             <div class="col-3 col">
               <label for="zip">Zip Code:</label>
               <input id="zip" name="user_zip" type="text" onchange="zipChecker()">
+
             </div>
 
             <div class="col-3 col">
               <label for="cvv">CVV:</label>
               <input id="cvv" name="user_cvv" type="text" onchange="cvvChecker()">
+
             </div>
 <br>
             <label for="exp-month">Expiration Date:</label>
@@ -176,9 +184,9 @@
         </fieldset>
 
 
-
+<button onsubmit="submit()" id="submit">Submit</button>
       </form>
-<button onclick="formValidation()" id="submit">Submit</button>
+
 
   	</div>
   <script src="js/jquery-1.11.2.min.js"></script>

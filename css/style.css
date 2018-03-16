@@ -167,8 +167,9 @@ button:hover {
 
 /* Validation */
 .message_box {
-float: left;
-position: relative;
+float: right;
+position:sticky;
+top: 50;
 z-index: 10;
 background:#ffc;
 padding:5px;
@@ -176,27 +177,23 @@ border:1px solid #CCCCCC;
 text-align:center;
 font-weight:bold;
 width:200px;
+
 }
 
 #emailError,
 #emailError2 {
   float:none;
-  margin-left: 5.5em;
-  top: 28em;
-  display: none;
+
 }
 #nameError {
   float:none;
-  margin-left: 5.5em;
-  top: 22em;
-  display: none;
 }
 #ccError,
 #zipError,
 #CVVError {
   float:none;
-  margin-left: 5.5em;
-  top: 81em;
+  display: inline-block;
+
 }
 
 
@@ -214,10 +211,7 @@ width:200px;
 		width: 100%;
 	}
 }
-#emailError {
-  float:none;
-  margin-left: 5.5em;
-}
+
 @media (min-width: 680px) {
 	header {
 		padding: 4.65em 0 2.5em;

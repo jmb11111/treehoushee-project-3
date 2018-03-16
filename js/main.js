@@ -207,7 +207,7 @@ const paypal = $("#paypal");
 const bitcoin = $("#bitcoin");
 
 function paymentSelection(){
-    let paymentChoice = document.getElementById("payment").selectedIndex;
+  let paymentChoice = document.getElementById("payment").selectedIndex;
   if (paymentChoice === 0 ) {
     creditCard.css("display","none");
     paypal.css("display","none");
@@ -314,7 +314,7 @@ function creditCardChecker(){
 // The zipcode field should accept a 5-digit number
 zipError.css("display", "none");
 function zipChecker(){
-    let paymentChoice = document.getElementById("payment").selectedIndex;
+  let paymentChoice = document.getElementById("payment").selectedIndex;
   let zip = document.forms["myForm"]["user_zip"].value;
   let zipCheck = /^(?:[0-9]{5})$/;
   if(zip.match(zipCheck) || paymentChoice === 2 || paymentChoice === 3 ){
@@ -377,16 +377,29 @@ function closeZipMessage(){
 
 //runs all validation functions
 function formValidation() {
-  if(checkName(),
+  if(
+  checkName(),
   checkEmail(),
   checkChecker(),
   creditCardChecker(),
   zipChecker(),
   cvvChecker()){
-    location.reload();
 return true;
 
 }else {
 return false;
 }
+}
+
+function submit(){
+  if (formValidation()) {
+    var x = document.getElementById('submit');
+    x.submit(); //form submission
+  }else {
+    $(document).ready(function(){
+    $("#submit").click(function(event){
+        event.preventDefault();
+    });
+});
+  }
 }
